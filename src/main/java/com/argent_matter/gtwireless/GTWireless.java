@@ -1,11 +1,9 @@
-package com.example.examplemod;
+package com.argent_matter.gtwireless;
 
+import com.argent_matter.gtwireless.content.GTWMachines;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
-import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEvent;
-import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
-import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.api.sound.SoundEntry;
 
@@ -22,24 +20,21 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(ExampleMod.MOD_ID)
-public class ExampleMod {
+@Mod(GTWireless.MOD_ID)
+public class GTWireless {
 
-    public static final String MOD_ID = "examplemod";
+    public static final String MOD_ID = "gtwireless";
     public static final Logger LOGGER = LogManager.getLogger();
-    public static GTRegistrate EXAMPLE_REGISTRATE = GTRegistrate.create(ExampleMod.MOD_ID);
+    public static GTRegistrate REGISTRATE = GTRegistrate.create(GTWireless.MOD_ID);
 
-    public ExampleMod() {
+    public GTWireless() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
 
         modEventBus.addListener(this::addMaterialRegistries);
-        modEventBus.addListener(this::addMaterials);
-        modEventBus.addListener(this::modifyMaterials);
 
-        modEventBus.addGenericListener(GTRecipeType.class, this::registerRecipeTypes);
         modEventBus.addGenericListener(MachineDefinition.class, this::registerMachines);
         modEventBus.addGenericListener(SoundEntry.class, this::registerSounds);
 
@@ -66,7 +61,7 @@ public class ExampleMod {
      * @param path
      * @return ResourceLocation with the namespace of your mod
      */
-    public static ResourceLocation id(String path) {
+    public static ResourceLocation rl(String path) {
         return new ResourceLocation(MOD_ID, path);
     }
 
@@ -78,36 +73,7 @@ public class ExampleMod {
      * @param event
      */
     private void addMaterialRegistries(MaterialRegistryEvent event) {
-        GTCEuAPI.materialManager.createRegistry(ExampleMod.MOD_ID);
-    }
-
-    /**
-     * You will also need this for registering custom materials
-     * Call init() from your Material class(es) here
-     * 
-     * @param event
-     */
-    private void addMaterials(MaterialEvent event) {
-        // CustomMaterials.init();
-    }
-
-    /**
-     * (Optional) Used to modify pre-existing materials from GregTech
-     * 
-     * @param event
-     */
-    private void modifyMaterials(PostMaterialEvent event) {
-        // CustomMaterials.modify();
-    }
-
-    /**
-     * Used to register your own new RecipeTypes.
-     * Call init() from your RecipeType class(es) here
-     * 
-     * @param event
-     */
-    private void registerRecipeTypes(GTCEuAPI.RegisterEvent<ResourceLocation, GTRecipeType> event) {
-        // CustomRecipeTypes.init();
+        GTCEuAPI.materialManager.createRegistry(GTWireless.MOD_ID);
     }
 
     /**
@@ -117,7 +83,7 @@ public class ExampleMod {
      * @param event
      */
     private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
-        // CustomMachines.init();
+        GTWMachines.init();
     }
 
     /**
