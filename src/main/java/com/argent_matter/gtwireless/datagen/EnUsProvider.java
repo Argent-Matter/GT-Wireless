@@ -20,6 +20,12 @@ public class EnUsProvider extends LanguageProvider {
         add("gtwireless.machine.cloud_computation_hatch.input.tooltip", "Wireless Computation Input for Multiblocks");
         add("gtwireless.machine.cloud_computation_hatch.output.tooltip", "Wireless Computation Output for Multiblocks");
 
+        add("gtwireless.commands.wireless_team.success", "%s successfully joined %s's team!");
+        add("gtwireless.commands.wireless_team.not_found", "At least one of the Players specified cannot be found!");
+        add("gtwireless.commands.wireless_team.already_in_a_team", "%s must not be already in a team!");
+        add("gtwireless.commands.status.not_player", "Status command sent by a non-player entity.");
+        add("gtwireless.commands.setdirty", "Successfully set GT Wireless SavedData dirty!");
+
         addDirectBlock("cloud_client_hatch", "Cloud Client Computation Hatch");
         addDirectBlock("cloud_server_hatch", "Cloud Server Computation Hatch");
 
