@@ -1,6 +1,8 @@
 package com.argent_matter.gtwireless.data;
 
 import com.argent_matter.gtwireless.GTWireless;
+import com.argent_matter.gtwireless.content.hatches.CloudDataHatchMachine;
+import com.gregtechceu.gtceu.common.machine.multiblock.part.DataAccessHatchMachine;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
@@ -216,11 +218,22 @@ public class GTWSavedData extends SavedData {
 
         // ---------- //
 
-        public Component statusOf(UUID player) { // TODO: Change this whenever Computation is properly implemented (no stocking)
+        public Component statusOf(UUID player) {
+            Component EUs = Component.literal(getEU(getTeam(player)).toString()).withStyle(ChatFormatting.WHITE);
+
+            int recipeCount = 0;
+            System.out.println("len: " + VolatileData.INSTANCE.getDataHatches(getTeam(player)).size());
+            for (CloudDataHatchMachine hatchMachine : VolatileData.INSTANCE.getDataHatches(getTeam(player))) {
+                System.out.println(hatchMachine.getRecipeCount());
+                recipeCount += hatchMachine.getRecipeCount();
+            }
+            Component AssemblyLineRecipeCount = Component.literal(String.valueOf(recipeCount)).withStyle(ChatFormatting.WHITE);
+
             return Component.literal("EU: ").withStyle(ChatFormatting.RED)
-                    .append(
-                            Component.literal(getEU(getTeam(player)).toString()).withStyle(ChatFormatting.WHITE)
-                    );
+                    .append(EUs)
+                    .append(Component.literal("\n"))
+                    .append(Component.literal("Assembly Line Recipe Count: ").withStyle(ChatFormatting.RED))
+                    .append(AssemblyLineRecipeCount);
         }
 
         // ---------- //

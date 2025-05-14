@@ -2,6 +2,7 @@ package com.argent_matter.gtwireless.datagen;
 
 import com.argent_matter.gtwireless.GTWireless;
 import com.gregtechceu.gtceu.api.GTValues;
+import net.minecraft.ChatFormatting;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
 
@@ -17,8 +18,11 @@ public class EnUsProvider extends LanguageProvider {
         add("gtwireless.machine.wireless_energy_hatch.input.tooltip", "Wireless Energy Input for Multiblocks");
         add("gtwireless.machine.wireless_energy_hatch.output.tooltip", "Wireless Energy Output for Multiblocks");
 
-        add("gtwireless.machine.cloud_computation_hatch.input.tooltip", "Wireless Computation Input for Multiblocks");
-        add("gtwireless.machine.cloud_computation_hatch.output.tooltip", "Wireless Computation Output for Multiblocks");
+        add("gtwireless.machine.cloud_client_hatch.tooltip", "Wireless Computation Input for Multiblocks");
+        add("gtwireless.machine.cloud_server_hatch.output.tooltip", "Wireless Computation Output for Multiblocks");
+
+        add("gtwireless.machine.cloud_data_receiver_hatch.tooltip", "Cloud Assembly Line Research Input Hatch (For the Assembly Line)");
+        add("gtwireless.machine.cloud_data_transmitter_hatch.tooltip", "Cloud Assembly Line Research Output Hatch (For the Data Bank)");
 
         add("gtwireless.commands.wireless_team.success", "%s successfully joined %s's team!");
         add("gtwireless.commands.wireless_team.not_found", "At least one of the Players specified cannot be found!");
@@ -26,8 +30,11 @@ public class EnUsProvider extends LanguageProvider {
         add("gtwireless.commands.status.not_player", "Status command sent by a non-player entity.");
         add("gtwireless.commands.setdirty", "Successfully set GT Wireless SavedData dirty!");
 
-        addDirectBlock("cloud_client_hatch", "Cloud Client Computation Hatch");
-        addDirectBlock("cloud_server_hatch", "Cloud Server Computation Hatch");
+        addDirectBlock("cloud_client_hatch", ChatFormatting.AQUA + "Cloud Client Computation Hatch");
+        addDirectBlock("cloud_server_hatch", ChatFormatting.AQUA + "Cloud Server Computation Hatch");
+
+        addDirectBlock("cloud_data_receiver_hatch", ChatFormatting.AQUA + "Cloud Data Receiver Hatch");
+        addDirectBlock("cloud_data_transmitter_hatch", ChatFormatting.AQUA + "Cloud Data Transmitter Hatch");
 
         for (int i = 0; i < GTValues.VN.length; i++) {
             String VN = GTValues.VN[i];
