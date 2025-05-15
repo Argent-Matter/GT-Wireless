@@ -19,7 +19,7 @@ public class EnUsProvider extends LanguageProvider {
         add("gtwireless.machine.wireless_energy_hatch.output.tooltip", "Wireless Energy Output for Multiblocks");
 
         add("gtwireless.machine.cloud_client_hatch.tooltip", "Wireless Computation Input for Multiblocks");
-        add("gtwireless.machine.cloud_server_hatch.output.tooltip", "Wireless Computation Output for Multiblocks");
+        add("gtwireless.machine.cloud_server_hatch.tooltip", "Wireless Computation Output for Multiblocks");
 
         add("gtwireless.machine.cloud_data_receiver_hatch.tooltip", "Cloud Assembly Line Research Input Hatch (For the Assembly Line)");
         add("gtwireless.machine.cloud_data_transmitter_hatch.tooltip", "Cloud Assembly Line Research Output Hatch (For the Data Bank)");
@@ -53,5 +53,9 @@ public class EnUsProvider extends LanguageProvider {
 
     private void addDirectBlock(String key, String value) {
         add("block.gtwireless." + key, value);
+    }
+
+    private void addDirectItem(String key, String value) {
+        add("item.gtwireless." + key, value);
     }
 }

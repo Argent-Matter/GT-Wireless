@@ -1,5 +1,6 @@
 package com.argent_matter.gtwireless;
 
+import com.argent_matter.gtwireless.content.GTWItems;
 import com.argent_matter.gtwireless.content.GTWRecipes;
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
@@ -20,7 +21,7 @@ public class GTWirelessAddon implements IGTAddon {
 
     @Override
     public void initializeAddon() {
-
+        GTWItems.init();
     }
 
     @Override
