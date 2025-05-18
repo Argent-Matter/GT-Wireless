@@ -24,9 +24,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Build
-        uses: ./.github/actions/build_setup
-
       - name: Build Project
         run: ./gradlew build --warning-mode all --build-cache
 
@@ -66,9 +63,6 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-
-      - name: Setup Build
-        uses: ./.github/actions/build_setup
 
       - name: Build Project
         run: ./gradlew build --warning-mode all --build-cache
