@@ -1,14 +1,13 @@
 package com.argent_matter.gtwireless.content.hatches;
 
-import com.argent_matter.gtwireless.data.VolatileData;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.IMachineLife;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.MultiblockPartMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableComputationContainer;
+
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import lombok.Generated;
-import lombok.Getter;
+
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -16,9 +15,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 
+import com.argent_matter.gtwireless.data.VolatileData;
+import lombok.Generated;
+import lombok.Getter;
+
 import java.util.UUID;
 
 public class CloudComputationHatchMachine extends MultiblockPartMachine implements IMachineLife {
+
     private final boolean transmitter;
     protected NotifiableComputationContainer computationContainer;
 
@@ -91,4 +95,3 @@ public class CloudComputationHatchMachine extends MultiblockPartMachine implemen
         return this.transmitter;
     }
 }
-

@@ -1,14 +1,17 @@
 package com.argent_matter.gtwireless.datagen;
 
-import com.argent_matter.gtwireless.GTWireless;
 import com.gregtechceu.gtceu.api.GTValues;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
 
+import com.argent_matter.gtwireless.GTWireless;
+
 import java.util.Locale;
 
 public class EnUsProvider extends LanguageProvider {
+
     public EnUsProvider(PackOutput output, String locale) {
         super(output, GTWireless.MOD_ID, locale);
     }

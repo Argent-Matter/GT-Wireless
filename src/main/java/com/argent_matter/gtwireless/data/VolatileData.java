@@ -1,13 +1,16 @@
 package com.argent_matter.gtwireless.data;
 
+import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
+
+import net.minecraft.server.level.ServerLevel;
+
 import com.argent_matter.gtwireless.content.hatches.CloudComputationHatchMachine;
 import com.argent_matter.gtwireless.content.hatches.CloudDataHatchMachine;
-import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
-import net.minecraft.server.level.ServerLevel;
 
 import java.util.*;
 
 public class VolatileData {
+
     public static final VolatileData INSTANCE = new VolatileData();
 
     public static VolatileData getInstance() {

@@ -1,7 +1,5 @@
 package com.argent_matter.gtwireless.content.hatches;
 
-import com.argent_matter.gtwireless.data.GTWSavedData;
-import com.argent_matter.gtwireless.data.VolatileData;
 import com.gregtechceu.gtceu.api.capability.IDataAccessHatch;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
@@ -23,17 +21,10 @@ import com.gregtechceu.gtceu.common.machine.multiblock.part.DataAccessHatchMachi
 import com.gregtechceu.gtceu.common.recipe.condition.ResearchCondition;
 import com.gregtechceu.gtceu.utils.ItemStackHashStrategy;
 import com.gregtechceu.gtceu.utils.ResearchManager;
+
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
-import com.mojang.datafixers.util.Pair;
-import it.unimi.dsi.fastutil.objects.ObjectOpenCustomHashSet;
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 
-import java.util.*;
-import java.util.stream.Stream;
-import javax.annotation.ParametersAreNonnullByDefault;
-
-import lombok.Getter;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -44,20 +35,35 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
+
+import com.argent_matter.gtwireless.data.GTWSavedData;
+import com.argent_matter.gtwireless.data.VolatileData;
+import com.mojang.datafixers.util.Pair;
+import it.unimi.dsi.fastutil.objects.ObjectOpenCustomHashSet;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
+import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.*;
+import java.util.stream.Stream;
+
+import javax.annotation.ParametersAreNonnullByDefault;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 public class CloudDataHatchMachine extends TieredPartMachine implements IMachineLife, IDataAccessHatch, IDataInfoProvider {
+
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER;
 
     private final Set<GTRecipe> recipes;
+
     public int getRecipeCount() {
         return this.recipes.size();
     }
 
     private final IO io;
+
     public boolean isInput() {
         return this.io == IO.IN;
     }
@@ -131,7 +137,6 @@ public class CloudDataHatchMachine extends TieredPartMachine implements IMachine
                         .map(part -> (DataAccessHatchMachine) part)
                         .toList();
 
-
                 for (DataAccessHatchMachine hatch : hatches) {
                     for (int i = 0; i < hatch.importItems.getSlots(); i++) {
                         ItemStack stack = hatch.importItems.getStackInSlot(i);
@@ -163,7 +168,6 @@ public class CloudDataHatchMachine extends TieredPartMachine implements IMachine
         Stream<RecipeCondition> conditions = recipe.conditions.stream();
         Objects.requireNonNull(ResearchCondition.class);
 
-
         return conditions.noneMatch(ResearchCondition.class::isInstance) || this.recipes.contains(recipe);
     }
 
@@ -178,11 +182,11 @@ public class CloudDataHatchMachine extends TieredPartMachine implements IMachine
             list.add(Component.empty());
             Collection<ItemStack> itemsAdded = new ObjectOpenCustomHashSet(ItemStackHashStrategy.comparingAll());
 
-            for(GTRecipe recipe : this.recipes) {
-                ItemStack stack = ((Ingredient)ItemRecipeCapability.CAP.of(((Content)recipe.getOutputContents(ItemRecipeCapability.CAP).get(0)).content)).getItems()[0];
+            for (GTRecipe recipe : this.recipes) {
+                ItemStack stack = ((Ingredient) ItemRecipeCapability.CAP.of(((Content) recipe.getOutputContents(ItemRecipeCapability.CAP).get(0)).content)).getItems()[0];
                 if (!itemsAdded.contains(stack)) {
                     itemsAdded.add(stack);
-                    list.add(Component.translatable("behavior.data_item.assemblyline.data", new Object[]{stack.getDisplayName()}));
+                    list.add(Component.translatable("behavior.data_item.assemblyline.data", new Object[] { stack.getDisplayName() }));
                 }
             }
 

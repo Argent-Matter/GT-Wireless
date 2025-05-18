@@ -1,14 +1,5 @@
 package com.argent_matter.gtwireless.data;
 
-import com.argent_matter.gtwireless.GTWireless;
-import com.argent_matter.gtwireless.content.hatches.CloudDataHatchMachine;
-import com.gregtechceu.gtceu.common.machine.multiblock.part.DataAccessHatchMachine;
-import com.mojang.datafixers.util.Pair;
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.DataResult;
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.mojang.serialization.codecs.UnboundedMapCodec;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.UUIDUtil;
 import net.minecraft.nbt.CompoundTag;
@@ -17,9 +8,14 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
-import org.apache.http.impl.conn.Wire;
+
+import com.argent_matter.gtwireless.GTWireless;
+import com.argent_matter.gtwireless.content.hatches.CloudDataHatchMachine;
+import com.mojang.datafixers.util.Pair;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.math.BigInteger;
 import java.util.HashMap;
@@ -28,6 +24,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public class GTWSavedData extends SavedData {
+
     public static final String GT_WIRELESS_DATA_ID = "gt_wireless_data";
 
     public static Codec<BigInteger> BIG_INTEGER_CODEC = Codec.STRING.xmap(BigInteger::new, BigInteger::toString);
@@ -53,8 +50,7 @@ public class GTWSavedData extends SavedData {
     @Override
     public @NotNull CompoundTag save(CompoundTag pCompoundTag) {
         DataResult<Tag> wirelessHolderDataResult = WirelessHolder.CODEC.encodeStart(NbtOps.INSTANCE, this.wirelessHolder);
-        Optional<Tag> wirelessHolderOptional = wirelessHolderDataResult.resultOrPartial
-                (err -> GTWireless.LOGGER.error("Encoding error: {}", err));
+        Optional<Tag> wirelessHolderOptional = wirelessHolderDataResult.resultOrPartial(err -> GTWireless.LOGGER.error("Encoding error: {}", err));
 
         if (wirelessHolderOptional.isPresent()) {
             pCompoundTag.put(GT_WIRELESS_DATA_ID, wirelessHolderDataResult.result().get());
@@ -84,11 +80,11 @@ public class GTWSavedData extends SavedData {
     }
 
     public static class WirelessHolder {
+
         public static final Codec<WirelessHolder> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 Codec.unboundedMap(Codec.STRING, BIG_INTEGER_CODEC).fieldOf("wirelessEU").forGetter(WirelessHolder::wirelessEUToStr),
                 Codec.unboundedMap(Codec.STRING, BIG_INTEGER_CODEC).fieldOf("wirelessComputation").forGetter(WirelessHolder::wirelessCompToStr),
-                Codec.unboundedMap(Codec.STRING, UUIDUtil.CODEC).fieldOf("playerTeams").forGetter(WirelessHolder::playerTeamsToStr)
-        ).apply(instance, WirelessHolder::wirelessHolderFromStr));
+                Codec.unboundedMap(Codec.STRING, UUIDUtil.CODEC).fieldOf("playerTeams").forGetter(WirelessHolder::playerTeamsToStr)).apply(instance, WirelessHolder::wirelessHolderFromStr));
 
         private Map<UUID, BigInteger> wirelessEUMap;
         private Map<UUID, BigInteger> wirelessComputationMap;
@@ -237,6 +233,5 @@ public class GTWSavedData extends SavedData {
         }
 
         // ---------- //
-
     }
 }

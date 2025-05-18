@@ -1,12 +1,13 @@
 package com.argent_matter.gtwireless;
 
-import com.argent_matter.gtwireless.content.GTWItems;
-import com.argent_matter.gtwireless.content.GTWRecipes;
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 
 import net.minecraft.data.recipes.FinishedRecipe;
+
+import com.argent_matter.gtwireless.content.GTWItems;
+import com.argent_matter.gtwireless.content.GTWRecipes;
 
 import java.util.function.Consumer;
 

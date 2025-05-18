@@ -1,6 +1,5 @@
 package com.argent_matter.gtwireless.content.hatches;
 
-import com.argent_matter.gtwireless.data.GTWSavedData;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -8,21 +7,26 @@ import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 import com.gregtechceu.gtceu.api.machine.feature.IMachineLife;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.TieredIOPartMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableEnergyContainer;
+
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
-import lombok.Getter;
+
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.BlockHitResult;
+
+import com.argent_matter.gtwireless.data.GTWSavedData;
+import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigInteger;
 import java.util.UUID;
 
 public class WirelessEnergyHatchPartMachine extends TieredIOPartMachine implements IMachineLife {
+
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER;
 
     static {
@@ -80,11 +84,23 @@ public class WirelessEnergyHatchPartMachine extends TieredIOPartMachine implemen
     protected @NotNull NotifiableEnergyContainer createEnergyContainer(Object... args) {
         NotifiableEnergyContainer container;
         if (this.io == IO.OUT) {
-            container = NotifiableEnergyContainer.emitterContainer(this, getHatchEnergyCapacity(this.tier, this.amperage), GTValues.V[this.tier], (long) this.amperage); // Same Capacity as a normal energy hatch
+            container = NotifiableEnergyContainer.emitterContainer(this, getHatchEnergyCapacity(this.tier, this.amperage), GTValues.V[this.tier], (long) this.amperage); // Same
+                                                                                                                                                                         // Capacity
+                                                                                                                                                                         // as
+                                                                                                                                                                         // a
+                                                                                                                                                                         // normal
+                                                                                                                                                                         // energy
+                                                                                                                                                                         // hatch
             container.setSideOutputCondition((s) -> false); // No Connection
             container.setCapabilityValidator((s) -> s == null || s == this.getFrontFacing());
         } else {
-            container = NotifiableEnergyContainer.receiverContainer(this, getHatchEnergyCapacity(this.tier, this.amperage), GTValues.V[this.tier], (long) this.amperage); // Same Capacity as a normal energy hatch
+            container = NotifiableEnergyContainer.receiverContainer(this, getHatchEnergyCapacity(this.tier, this.amperage), GTValues.V[this.tier], (long) this.amperage); // Same
+                                                                                                                                                                          // Capacity
+                                                                                                                                                                          // as
+                                                                                                                                                                          // a
+                                                                                                                                                                          // normal
+                                                                                                                                                                          // energy
+                                                                                                                                                                          // hatch
             container.setSideInputCondition((s) -> false); // No Connection
             container.setCapabilityValidator((s) -> s == null || s == this.getFrontFacing());
         }
@@ -101,6 +117,7 @@ public class WirelessEnergyHatchPartMachine extends TieredIOPartMachine implemen
     }
 
     private static class WirelessHatchHandler implements Runnable {
+
         WirelessEnergyHatchPartMachine hatch;
         ServerLevel level;
 
