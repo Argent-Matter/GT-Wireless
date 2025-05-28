@@ -1,5 +1,7 @@
 package com.argent_matter.gtwireless;
 
+import com.argent_matter.gtwireless.content.GTWMachines;
+import com.argent_matter.gtwireless.datagen.RegistrateDataGen;
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
@@ -23,6 +25,7 @@ public class GTWirelessAddon implements IGTAddon {
     @Override
     public void initializeAddon() {
         GTWItems.init();
+        RegistrateDataGen.init();
     }
 
     @Override

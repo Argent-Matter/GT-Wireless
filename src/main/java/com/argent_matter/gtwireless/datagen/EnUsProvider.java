@@ -2,63 +2,35 @@ package com.argent_matter.gtwireless.datagen;
 
 import com.gregtechceu.gtceu.api.GTValues;
 
+import com.tterrag.registrate.providers.RegistrateLangProvider;
 import net.minecraft.ChatFormatting;
 import net.minecraft.data.PackOutput;
+import net.minecraft.network.chat.Component;
 import net.minecraftforge.common.data.LanguageProvider;
 
 import com.argent_matter.gtwireless.GTWireless;
 
 import java.util.Locale;
 
-public class EnUsProvider extends LanguageProvider {
+public class EnUsProvider {
+    public static void init(RegistrateLangProvider provider) {
+        provider.add("gtwireless.machine.wireless_energy_hatch.input.tooltip", "Wireless Energy Input for Multiblocks");
+        provider.add("gtwireless.machine.wireless_energy_hatch.output.tooltip", "Wireless Energy Output for Multiblocks");
 
-    public EnUsProvider(PackOutput output, String locale) {
-        super(output, GTWireless.MOD_ID, locale);
-    }
+        provider.add("gtwireless.machine.cloud_client_hatch.tooltip", "Wireless Computation Input for Multiblocks");
+        provider.add("gtwireless.machine.cloud_server_hatch.tooltip", "Wireless Computation Output for Multiblocks");
 
-    @Override
-    protected void addTranslations() {
-        add("gtwireless.machine.wireless_energy_hatch.input.tooltip", "Wireless Energy Input for Multiblocks");
-        add("gtwireless.machine.wireless_energy_hatch.output.tooltip", "Wireless Energy Output for Multiblocks");
+        provider.add("gtwireless.machine.cloud_data_receiver_hatch.tooltip", "Cloud Assembly Line Research Input Hatch (For the Assembly Line)");
+        provider.add("gtwireless.machine.cloud_data_transmitter_hatch.tooltip", "Cloud Assembly Line Research Output Hatch (For the Data Bank)");
 
-        add("gtwireless.machine.cloud_client_hatch.tooltip", "Wireless Computation Input for Multiblocks");
-        add("gtwireless.machine.cloud_server_hatch.tooltip", "Wireless Computation Output for Multiblocks");
+        provider.add("gtwireless.commands.wireless_team.success", "%s successfully joined %s's team!");
+        provider.add("gtwireless.commands.wireless_team.not_found", "At least one of the Players specified cannot be found!");
+        provider.add("gtwireless.commands.wireless_team.already_in_a_team", "%s must not be already in a team!");
+        provider.add("gtwireless.commands.status.not_player", "Status command sent by a non-player entity.");
+        provider.add("gtwireless.commands.setdirty", "Successfully set GT Wireless SavedData dirty!");
 
-        add("gtwireless.machine.cloud_data_receiver_hatch.tooltip", "Cloud Assembly Line Research Input Hatch (For the Assembly Line)");
-        add("gtwireless.machine.cloud_data_transmitter_hatch.tooltip", "Cloud Assembly Line Research Output Hatch (For the Data Bank)");
-
-        add("gtwireless.commands.wireless_team.success", "%s successfully joined %s's team!");
-        add("gtwireless.commands.wireless_team.not_found", "At least one of the Players specified cannot be found!");
-        add("gtwireless.commands.wireless_team.already_in_a_team", "%s must not be already in a team!");
-        add("gtwireless.commands.status.not_player", "Status command sent by a non-player entity.");
-        add("gtwireless.commands.setdirty", "Successfully set GT Wireless SavedData dirty!");
-
-        addDirectBlock("cloud_client_hatch", ChatFormatting.AQUA + "Cloud Client Computation Hatch");
-        addDirectBlock("cloud_server_hatch", ChatFormatting.AQUA + "Cloud Server Computation Hatch");
-
-        addDirectBlock("cloud_data_receiver_hatch", ChatFormatting.AQUA + "Cloud Data Receiver Hatch");
-        addDirectBlock("cloud_data_transmitter_hatch", ChatFormatting.AQUA + "Cloud Data Transmitter Hatch");
-
-        for (int i = 0; i < GTValues.VN.length; i++) {
-            String VN = GTValues.VN[i];
-            String VNF = GTValues.VNF[i];
-
-            addDirectBlock(VN.toLowerCase(Locale.ROOT) + "_wireless_energy_input_hatch", VNF + " Wireless Energy Hatch");
-            addDirectBlock(VN.toLowerCase(Locale.ROOT) + "_wireless_energy_output_hatch", VNF + " Wireless Dynamo Hatch");
-
-            addDirectBlock(VN.toLowerCase(Locale.ROOT) + "_wireless_energy_input_hatch_4a", VNF + " 4A Wireless Energy Hatch");
-            addDirectBlock(VN.toLowerCase(Locale.ROOT) + "_wireless_energy_output_hatch_4a", VNF + " 4A Wireless Dynamo Hatch");
-
-            addDirectBlock(VN.toLowerCase(Locale.ROOT) + "_wireless_energy_input_hatch_16a", VNF + " 16A Wireless Energy Hatch");
-            addDirectBlock(VN.toLowerCase(Locale.ROOT) + "_wireless_energy_output_hatch_16a", VNF + " 16A Wireless Dynamo Hatch");
-        }
-    }
-
-    private void addDirectBlock(String key, String value) {
-        add("block.gtwireless." + key, value);
-    }
-
-    private void addDirectItem(String key, String value) {
-        add("item.gtwireless." + key, value);
+        provider.add("gtwireless.item.hyperdense_naquadria_solid.tooltip", Component.literal("It's... angry.").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY).getString());
+        provider.add("gtwireless.item.ether_influxor.tooltip", Component.literal("OOOOoooooo......").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY).getString());
+        provider.add("gtwireless.item.ether_expulsor.tooltip", Component.literal("......ooooooOOOO").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY).getString());
     }
 }

@@ -77,12 +77,6 @@ public class GTWireless {
         GTCEuAPI.materialManager.createRegistry(GTWireless.MOD_ID);
     }
 
-    /**
-     * Used to register your own new RecipeTypes.
-     * Call init() from your Machine class(es) here
-     * 
-     * @param event
-     */
     private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
         GTWMachines.init();
     }
